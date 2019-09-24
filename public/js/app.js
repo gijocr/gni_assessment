@@ -73281,18 +73281,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _pages_Main__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/Main */ "./resources/js/src/pages/Main/index.js");
+/* harmony import */ var _styles_global__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles/global */ "./resources/js/src/styles/global.js");
+/* harmony import */ var _pages_Main__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Main */ "./resources/js/src/pages/Main/index.js");
 
+
+ // Styles
 
  // Pages
 
 
 function Routes() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_global__WEBPACK_IMPORTED_MODULE_3__["GlobalStyle"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/",
-    component: _pages_Main__WEBPACK_IMPORTED_MODULE_3__["default"]
-  })));
+    component: _pages_Main__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }))));
 }
 
 if (document.getElementById('app')) {
@@ -73325,17 +73328,19 @@ function Body(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "header py-5"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Google News Initiative Design Accelerator Design Maturity Assessment"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Welcome to the Design Maturity Assessment, a self-assessment tool put together by Echos Innovation Lab to help organizations understand the maturity of their digital, design and innovation initiatives."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "The survey will take approximately 20 minutes to complete."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "col-md-9"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "title"
+  }, "Google News Initiative Design Accelerator Design Maturity Assessment"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "description"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Welcome to the Design Maturity Assessment, a self-assessment tool put together by Echos Innovation Lab to help organizations understand the maturity of their digital, design and innovation initiatives."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "The survey will take approximately 20 minutes to complete.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "button",
     className: "btn btn-default"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Begin the assessment!"))))))));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Begin the assessment!")))))));
 }
 
 /***/ }),
@@ -73367,7 +73372,7 @@ function Footer(_ref) {
     className: "row"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "#FOOTER"))))));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "The Google News Initiative Design Accelerator is a partnership between Google, Splice and Echos"))))));
 }
 
 /***/ }),
@@ -73391,7 +73396,7 @@ function Header(_ref) {
   var backgroundColor = _ref.backgroundColor;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_components_Header__WEBPACK_IMPORTED_MODULE_1__["Container"], {
     backgroundColor: backgroundColor,
-    className: "header py-4"
+    className: "header"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -73429,7 +73434,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Page() {
-  var headerBackgroundColor = '#286acc';
+  var headerBackgroundColor = '#2769cb';
   var bodyBackgroundColor = '#4185f4';
   var footerBackgroundColor = '#286acc';
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_components_Page__WEBPACK_IMPORTED_MODULE_4__["Content"], {
@@ -73478,7 +73483,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Container", function() { return Container; });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  width: 100%;\n"]);
+  var data = _taggedTemplateLiteral(["\n  width: 100%;\n  display: flex;\n  align-items: center;\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -73506,7 +73511,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Container", function() { return Container; });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  flex: 1;\n  align-self: flex-end;\n  background-color: ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  flex: 1;\n  align-self: flex-end;\n  background-color: ", ";\n  color: rgba(0, 0, 0, 0.65);\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -73536,7 +73541,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Container", function() { return Container; });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  flex: 1;\n  align-self: flex-start;\n  background-color: ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  flex: 1;\n  align-self: flex-start;\n  background-color: ", ";\n  padding: 2rem 0;\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -73566,7 +73571,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Content", function() { return Content; });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  height: 100vh;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-between;\n  background-color: ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  height: 100vh;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-between;\n  background-color: ", ";\n  color: #fff;\n\n  .title {\n    font-weight: 700;\n  }\n\n  .description {\n    p {\n      &:not(:last-of-type) {\n        margin-bottom: 1.5rem;\n      }\n\n      &:last-of-type {\n        margin: 0;\n      }\n    }\n  }\n\n  .title,\n  .description {\n    margin-bottom: 2.25rem;\n  }\n\n  .btn {\n    color: ", ";\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -73580,7 +73585,37 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 var Content = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject(), function (props) {
   return props.backgroundColor;
+}, function (props) {
+  return props.backgroundColor;
 });
+
+/***/ }),
+
+/***/ "./resources/js/src/styles/global.js":
+/*!*******************************************!*\
+  !*** ./resources/js/src/styles/global.js ***!
+  \*******************************************/
+/*! exports provided: GlobalStyle */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GlobalStyle", function() { return GlobalStyle; });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  body {\n    font-family: 'Nunito', sans-serif;\n\n    p {\n      font-size: 1.35rem;\n    }\n\n    .btn {\n      padding: 0.375rem 1.35rem;\n      border-radius: 6px;\n\n      &.btn-default {\n        background-color: #fff;\n      }\n    }\n  }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+var GlobalStyle = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["createGlobalStyle"])(_templateObject());
 
 /***/ }),
 

@@ -7,13 +7,14 @@ export default function Body({ backgroundColor }) {
   return (
     <Container backgroundColor={backgroundColor}>
       <div className="container">
-        <div className="header py-5">
-          <div className="row">
-            <div className="col">
-              <h1>
-                Google News Initiative Design Accelerator Design Maturity
-                Assessment
-              </h1>
+        <div className="row">
+          <div className="col-md-9">
+            <h1 className="title">
+              Google News Initiative Design Accelerator Design Maturity
+              Assessment
+            </h1>
+
+            <div className="description">
               <p>
                 Welcome to the Design Maturity Assessment, a self-assessment
                 tool put together by Echos Innovation Lab to help organizations
@@ -22,13 +23,13 @@ export default function Body({ backgroundColor }) {
               </p>
 
               <p>The survey will take approximately 20 minutes to complete.</p>
-
-              <Link to="/">
-                <button type="button" className="btn btn-default">
-                  <strong>Begin the assessment!</strong>
-                </button>
-              </Link>
             </div>
+
+            <Link to="/">
+              <button type="button" className="btn btn-default">
+                <strong>Begin the assessment!</strong>
+              </button>
+            </Link>
           </div>
         </div>
       </div>

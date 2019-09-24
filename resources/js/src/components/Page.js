@@ -9,7 +9,7 @@ import Footer from './Footer';
 import { Content } from '../styles/components/Page';
 
 export default function Page() {
-  const headerBackgroundColor = '#286acc';
+  const headerBackgroundColor = '#2769cb';
   const bodyBackgroundColor = '#4185f4';
   const footerBackgroundColor = '#286acc';
   return (

@@ -4,7 +4,7 @@ import { Container } from '../styles/components/Header';
 
 export default function Header({ backgroundColor }) {
   return (
-    <Container backgroundColor={backgroundColor} className="header py-4">
+    <Container backgroundColor={backgroundColor} className="header">
       <div className="container">
         <div className="row">
           <div className="col-sm-6">#LOGO_LEFT</div>
