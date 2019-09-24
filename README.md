@@ -1,1 +1,0 @@
-# gni_assessment
