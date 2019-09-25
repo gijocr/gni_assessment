@@ -32,6 +32,10 @@
     "sass-loader": "^7.1.0"
   },
   "dependencies": {
+    "datatables.net": "^1.10.19",
+    "datatables.net-bs4": "^1.10.19",
+    "datatables.net-colreorder-bs4": "^1.5.1",
+    "datatables.net-dt": "^1.10.19",
     "eslint-config-prettier": "^6.3.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

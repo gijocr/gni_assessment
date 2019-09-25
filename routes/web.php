@@ -10,9 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
-Route::get('/admin', function () {
-    return view('welcome');
-});
+// ADMIN Routes
+Route::prefix('panel')
+    ->name('admin.')
+    ->middleware(['auth'])
+    ->group(function () {
+        Route::get('/', 'DashboardController@index');
+        Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+        Route::resource('pageTypes', 'PageTypeController');
+        Route::resource('pages', 'PageController');
+    });
 
+// REACT Route
 Route::view('/{path?}', 'app');
