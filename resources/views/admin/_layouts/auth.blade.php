@@ -8,7 +8,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ config('app.name') }}</title>
 
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
@@ -22,22 +22,8 @@
 </head>
 
 <body>
-  @include('admin._includes.header')
-
-
-  <div class="container-fluid">
-    <div class="row">
-      @include('admin._includes.navigation')
-
-      <main class="col-md-9 col-lg-10 ml-sm-auto p-4">
-        @yield('content')
-        <div class="row justify-content-center">
-          <div class="col-md-10 col-lg-8">
-            @yield('form_content')
-          </div>
-        </div>
-      </main>
-    </div>
+  <div class="my-5">
+    @yield('content')
   </div>
 </body>
 

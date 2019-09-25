@@ -1,6 +1,6 @@
 @extends('admin._layouts.app')
 
-@section('content')
+@section('form_content')
 <div class="row">
   <div class="col-12">
     <h3 class="mb-4 text-center">Create Page Types</h3>
