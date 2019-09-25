@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
+use App\Models\PageType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
@@ -14,7 +16,9 @@ class PageController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.index');
+        $pages = Page::with('pageType')->get();
+
+        return view('admin.pages.index', compact('pages'));
     }
 
     /**
@@ -24,7 +28,11 @@ class PageController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.create');
+        $pageTypes = PageType::orderBy('name')
+            ->pluck('name', 'id')
+            ->toArray();
+
+        return view('admin.pages.create', compact('pageTypes'));
     }
 
     /**
@@ -35,7 +43,23 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $pageType = PageType::findOrFail($request->input('page_type_id'));
+            $page = Page::make($request->all());
+            $page->pageType()
+                ->associate($pageType)
+                ->save();
+
+            DB::commit();
+
+            return successMessage();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return errorMessage();
+        }
     }
 
     /**
@@ -57,7 +81,13 @@ class PageController extends Controller
      */
     public function edit(Page $page)
     {
-        //
+        $page->load('pageType');
+
+        $pageTypes = PageType::orderBy('name')
+            ->pluck('name', 'id')
+            ->toArray();
+
+        return view('admin.pages.edit', compact('page', 'pageTypes'));
     }
 
     /**
@@ -69,7 +99,23 @@ class PageController extends Controller
      */
     public function update(Request $request, Page $page)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $pageType = PageType::findOrFail($request->input('page_type_id'));
+            $page->update($request->all());
+            $page->pageType()
+                ->associate($pageType)
+                ->save();
+
+            DB::commit();
+
+            return successMessage();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return errorMessage();
+        }
     }
 
     /**
@@ -80,6 +126,18 @@ class PageController extends Controller
      */
     public function destroy(Page $page)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $page->delete();
+
+            DB::commit();
+
+            return successMessage();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return errorMessage();
+        }
     }
 }

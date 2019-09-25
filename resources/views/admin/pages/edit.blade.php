@@ -3,7 +3,7 @@
 @section('form_content')
 <div class="row">
   <div class="col-12">
-    <h3 class="mb-4 text-center">Create Pages</h3>
+    <h3 class="mb-4 text-center">Update Pages</h3>
   </div>
 
   <div class="col-12">
@@ -11,12 +11,18 @@
   </div>
 
   <div class="col-12">
-    {{ Form::open(['route' => 'admin.pages.store', 'method' => 'post']) }}
+    {{ Form::model(
+      $page, 
+      [
+        'route' => ['admin.pages.update', $page], 
+        'method' => 'put'
+      ]
+      ) }}
 
     <div class="form-row">
       <div class="form-group col-md-12">
         {{ Form::label('page_type_id', 'Type') }}
-        {{ Form::select('page_type_id', ['' => 'Select'] + $pageTypes, [], ['class' => 'form-control']) }}
+        {{ Form::select('page_type_id', ['' => 'Select'] + $pageTypes, null, ['class' => 'form-control']) }}
       </div>
 
       <div class="form-group col-md-12">

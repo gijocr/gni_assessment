@@ -15,6 +15,17 @@ class PageType extends Model
         'order',
     ];
 
+    /**
+     * Pages that the page type has.
+     */
+    public function page()
+    {
+        return $this->hasMany(Page::class);
+    }
+
+    /**
+     * Set name attribute.
+     */
     public function setNameAttribute($value)
     {
         $this->attributes['name'] = $value;
