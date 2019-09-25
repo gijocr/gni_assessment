@@ -21,6 +21,7 @@ Route::prefix('panel')
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
         Route::resource('pageTypes', 'PageTypeController');
         Route::resource('pages', 'PageController');
+        Route::resource('answers', 'AnswerController');
     });
 
 // REACT Route

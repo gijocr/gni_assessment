@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Answer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AnswerController extends Controller
 {
@@ -14,7 +15,9 @@ class AnswerController extends Controller
      */
     public function index()
     {
-        //
+        $answers = Answer::orderBy('order')->get();
+
+        return view('admin.answers.index', compact('answers'));
     }
 
     /**
@@ -24,7 +27,7 @@ class AnswerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.answers.create');
     }
 
     /**
@@ -35,7 +38,19 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            Answer::create($request->all());
+
+            DB::commit();
+
+            return successMessage();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return errorMessage();
+        }
     }
 
     /**
@@ -57,7 +72,7 @@ class AnswerController extends Controller
      */
     public function edit(Answer $answer)
     {
-        //
+        return view('admin.answers.edit', compact('answer'));
     }
 
     /**
@@ -69,7 +84,19 @@ class AnswerController extends Controller
      */
     public function update(Request $request, Answer $answer)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $answer->update($request->all());
+
+            DB::commit();
+
+            return successMessage();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return errorMessage();
+        }
     }
 
     /**
@@ -80,6 +107,18 @@ class AnswerController extends Controller
      */
     public function destroy(Answer $answer)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $answer->delete();
+
+            DB::commit();
+
+            return successMessage();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return errorMessage();
+        }
     }
 }

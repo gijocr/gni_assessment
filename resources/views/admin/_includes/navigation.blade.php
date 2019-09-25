@@ -18,6 +18,12 @@
           Pages
         </a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link active" href="{{ route('admin.answers.index') }}">
+          Answers
+        </a>
+      </li>
     </ul>
   </div>
 </nav>
