@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\QuestionType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class QuestionTypeController extends Controller
 {
@@ -14,7 +15,9 @@ class QuestionTypeController extends Controller
      */
     public function index()
     {
-        //
+        $questionTypes = QuestionType::orderBy('order')->get();
+
+        return view('admin.questionTypes.index', compact('questionTypes'));
     }
 
     /**
@@ -24,7 +27,7 @@ class QuestionTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.questionTypes.create');
     }
 
     /**
@@ -35,7 +38,19 @@ class QuestionTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            QuestionType::create($request->all());
+
+            DB::commit();
+
+            return successMessage();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return errorMessage();
+        }
     }
 
     /**
@@ -57,7 +72,7 @@ class QuestionTypeController extends Controller
      */
     public function edit(QuestionType $questionType)
     {
-        //
+        return view('admin.questionTypes.edit', compact('questionType'));
     }
 
     /**
@@ -69,7 +84,19 @@ class QuestionTypeController extends Controller
      */
     public function update(Request $request, QuestionType $questionType)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $questionType->update($request->all());
+
+            DB::commit();
+
+            return successMessage();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return errorMessage();
+        }
     }
 
     /**
@@ -80,6 +107,18 @@ class QuestionTypeController extends Controller
      */
     public function destroy(QuestionType $questionType)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $questionType->delete();
+
+            DB::commit();
+
+            return successMessage();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return errorMessage();
+        }
     }
 }
