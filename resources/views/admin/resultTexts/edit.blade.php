@@ -52,7 +52,7 @@
 
       <div class="form-group col-md-4">
         {{ Form::label('order', 'Order') }}
-        {{ Form::text('order', null, ['class' => 'form-control', 'maxlength' => '7']) }}
+        {{ Form::text('order', null, ['class' => 'form-control']) }}
       </div>
     </div>
 
