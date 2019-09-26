@@ -20,4 +20,14 @@ class Answer extends Model
             ->withPivot(['score', 'factor'])
             ->withTimestamps();
     }
+
+    /**
+     * Questions that belongs to the answer.
+     */
+    public function questions()
+    {
+        return $this->belongsToMany(Question::class)
+            ->withPivot(['session_id'])
+            ->withTimestamps();
+    }
 }

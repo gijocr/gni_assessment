@@ -26,4 +26,14 @@ class Question extends Model
     {
         return $this->belongsTo(QuestionType::class);
     }
+
+    /**
+     * Answers that belongs to the question.
+     */
+    public function answers()
+    {
+        return $this->belongsToMany(Answer::class)
+            ->withPivot(['session_id'])
+            ->withTimestamps();
+    }
 }
