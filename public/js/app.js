@@ -96852,8 +96852,8 @@ __webpack_require__(/*! @ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4
 window.$(document).ready(function () {
   window.$('.datatable').DataTable();
   window.$('.select2').select2({
-    theme: 'bootstrap4',
-    placeholder: 'Select'
+    placeholder: 'Select',
+    theme: 'bootstrap4'
   });
   window.$('[data-dismiss="alert"]').on('click', function () {
     window.$(this).parents('.alert').remove();

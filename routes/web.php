@@ -23,6 +23,7 @@ Route::prefix('panel')
         Route::resource('pages', 'PageController');
         Route::resource('answers', 'AnswerController');
         Route::resource('questionTypes', 'QuestionTypeController');
+        Route::resource('questions', 'QuestionController');
     });
 
 // REACT Route

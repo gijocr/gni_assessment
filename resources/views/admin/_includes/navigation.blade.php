@@ -26,6 +26,12 @@
       </li>
 
       <li class="nav-item">
+        <a class="nav-link active" href="{{ route('admin.questions.index') }}">
+          Questions
+        </a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link active" href="{{ route('admin.answers.index') }}">
           Answers
         </a>
