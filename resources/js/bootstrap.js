@@ -8,11 +8,12 @@ window._ = require('lodash');
 
 try {
   window.Popper = require('popper.js').default;
-  window.$ = $ = window.jQuery = require('jquery');
-  window.dt = dt = require('datatables.net-bs4')();
-  require('datatables.net-colreorder-bs4')();
+  window.$ = $ = require('jquery');
 
   require('bootstrap');
+
+  window.dt = dt = require('datatables.net-bs4')();
+  require('datatables.net-colreorder-bs4')();
 } catch (e) {}
 
 /**

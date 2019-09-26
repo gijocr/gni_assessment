@@ -96885,12 +96885,13 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
 try {
   window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
-  window.$ = $ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+  window.$ = $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+  __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
+
   window.dt = dt = __webpack_require__(/*! datatables.net-bs4 */ "./node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js")();
 
   __webpack_require__(/*! datatables.net-colreorder-bs4 */ "./node_modules/datatables.net-colreorder-bs4/js/colReorder.bootstrap4.js")();
-
-  __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 } catch (e) {}
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm flex-md-nowrap">
+<nav class="navbar navbar-expand-md navbar-light fixed-top bg-white shadow-sm flex-md-nowrap">
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ route('admin.dashboard') }}">
     {{ config('app.name') }}
   </a>
@@ -27,6 +27,20 @@
       </li>
       @endif
       @else
+      <li class="nav-item">
+        <div class="dropdown">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown link
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+      </li>
       <li class="nav-item dropdown">
         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false" v-pre>
@@ -35,7 +49,7 @@
 
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
+            document.getElementById('logout-form').submit();">
             {{ __('Logout') }}
           </a>
 

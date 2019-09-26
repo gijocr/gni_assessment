@@ -126,6 +126,18 @@ class ResultTextController extends Controller
      */
     public function destroy(ResultText $resultText)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $resultText->delete();
+
+            DB::commit();
+
+            return successMessage();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return errorMessage();
+        }
     }
 }
