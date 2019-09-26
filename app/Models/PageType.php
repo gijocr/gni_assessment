@@ -16,9 +16,17 @@ class PageType extends Model
     ];
 
     /**
-     * Pages that the page type has.
+     * Pages that the pageType has.
      */
-    public function page()
+    public function pages()
+    {
+        return $this->hasMany(Page::class);
+    }
+
+    /**
+     * ResultTexts that the pageType has.
+     */
+    public function resultTexts()
     {
         return $this->hasMany(Page::class);
     }

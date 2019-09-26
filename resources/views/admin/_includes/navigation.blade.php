@@ -42,6 +42,12 @@
           Assessment Users
         </a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link active" href="{{ route('admin.resultTexts.index') }}">
+          Result Texts
+        </a>
+      </li>
     </ul>
   </div>
 </nav>
