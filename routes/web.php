@@ -24,6 +24,7 @@ Route::prefix('panel')
         Route::resource('answers', 'AnswerController');
         Route::resource('questionTypes', 'QuestionTypeController');
         Route::resource('questions', 'QuestionController');
+        Route::resource('assessmentUsers', 'AssessmentUserController');
     });
 
 // REACT Route
