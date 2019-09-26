@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Answer;
+use App\Models\QuestionType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -27,7 +28,11 @@ class AnswerController extends Controller
      */
     public function create()
     {
-        return view('admin.answers.create');
+        $questionTypes = QuestionType::orderBy('title')
+            ->pluck('title', 'id')
+            ->toArray();
+
+        return view('admin.answers.create', compact('questionTypes'));
     }
 
     /**
@@ -72,7 +77,12 @@ class AnswerController extends Controller
      */
     public function edit(Answer $answer)
     {
-        return view('admin.answers.edit', compact('answer'));
+        $answer->load('questionTypes');
+        $questionTypes = QuestionType::orderBy('title')
+            ->pluck('title', 'id')
+            ->toArray();
+
+        return view('admin.answers.edit', compact('answer', 'questionTypes'));
     }
 
     /**
@@ -84,17 +94,30 @@ class AnswerController extends Controller
      */
     public function update(Request $request, Answer $answer)
     {
+        // dd($request->all());
+        $sync = [];
+
         DB::beginTransaction();
 
         try {
             $answer->update($request->all());
+
+            foreach ($request->input('question_types.ids') as $questionId) {
+                $sync[$questionId] = [
+                    'score' => $request->input('question_types.score')[$questionId] ?? null,
+                    'factor' => $request->input('question_types.score')[$questionId] ?? null,
+                ];
+            }
+
+            $answer->questionTypes()
+                ->sync($sync);
 
             DB::commit();
 
             return successMessage();
         } catch (\Throwable $th) {
             DB::rollBack();
-
+            dd($th);
             return errorMessage();
         }
     }

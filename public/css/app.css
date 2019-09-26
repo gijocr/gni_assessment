@@ -10650,3 +10650,8 @@ a.text-dark:focus {
   bottom: 0;
 }
 
+.select2-container {
+  width: 100% !important;
+  background-color: white;
+}
+

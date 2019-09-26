@@ -10,4 +10,12 @@ class QuestionType extends Model
         'title',
         'order',
     ];
+
+    /**
+     * Answers that belongs to the question type .
+     */
+    public function answers()
+    {
+        return $this->belongsToMany(Answer::class);
+    }
 }

@@ -20,13 +20,45 @@
 
     <div class="form-row">
       <div class="form-group col-md-12">
+        {{ Form::label('question_types', 'Type') }}
+        {{ Form::select(
+          'question_types[ids][]',
+          $questionTypes, 
+          $answer->questionTypes,
+          [
+            'class' => 'form-control select2',
+            'multiple' => 'multiple',
+            'required' => 'required',
+          ]
+        ) }}
+      </div>
+      @foreach($answer->questionTypes as $questionType)
+      <div class="form-group col-md-12">
+        <b class="d-block mb-2">{{  $questionType->title }}</b>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            {{ Form::label('question_types[score][' . $questionType->id . ']', 'Score') }}
+            {{ Form::text('question_types[score]['. $questionType->id .']', $questionType->pivot->score, ['class' => 'form-control']) }}
+          </div>
+
+          <div class="form-group col-md-6">
+            {{ Form::label('question_types[factor][' . $questionType->id . ']', 'Factor') }}
+            {{ Form::text('question_types[factor][' . $questionType->id . ']', $questionType->pivot->factor, ['class' => 'form-control']) }}
+          </div>
+        </div>
+
+      </div>
+      @endforeach
+
+      <div class="form-group col-md-12">
         {{ Form::label('title', 'Title') }}
         {{ Form::text('title', null, ['class' => 'form-control']) }}
       </div>
 
-      <div class="form-group col-md-12">
+      <div class="form-group col-md-4">
         {{ Form::label('order', 'Order') }}
-        {{ Form::text('order', null, ['class' => 'form-control', 'maxlength' => '7']) }}
+        {{ Form::text('order', null, ['class' => 'form-control']) }}
       </div>
     </div>
 

@@ -10,4 +10,14 @@ class Answer extends Model
         'title',
         'order',
     ];
+
+    /**
+     * Question types that belongs to the answer.
+     */
+    public function questionTypes()
+    {
+        return $this->belongsToMany(QuestionType::class, 'answer_question_types')
+            ->withPivot(['score', 'factor'])
+            ->withTimestamps();
+    }
 }

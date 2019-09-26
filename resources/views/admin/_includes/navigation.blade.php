@@ -20,14 +20,14 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link active" href="{{ route('admin.answers.index') }}">
-          Answers
+        <a class="nav-link active" href="{{ route('admin.questionTypes.index') }}">
+          Question Type
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link active" href="{{ route('admin.questionTypes.index') }}">
-          Question Type
+        <a class="nav-link active" href="{{ route('admin.answers.index') }}">
+          Answers
         </a>
       </li>
     </ul>

@@ -15,6 +15,20 @@
 
     <div class="form-row">
       <div class="form-group col-md-12">
+        {{ Form::label('question_types', 'Type') }}
+        {{ Form::select(
+            'question_types[]',
+            $questionTypes, 
+            null,
+            [
+              'class' => 'form-control select2',
+              'multiple' => 'multiple',
+              'required' => 'required',
+            ]
+          ) }}
+      </div>
+
+      <div class="form-group col-md-12">
         {{ Form::label('title', 'Title') }}
         {{ Form::text('title', null, ['class' => 'form-control']) }}
       </div>

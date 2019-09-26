@@ -5,9 +5,16 @@
  */
 
 require('./bootstrap');
+require('select2');
+require('select2/dist/css/select2.min.css');
+require('@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css');
 
 window.$(document).ready(() => {
   window.$('.datatable').DataTable();
+  window.$('.select2').select2({
+    theme: 'bootstrap4',
+    placeholder: 'Select',
+  });
 
   window.$('[data-dismiss="alert"]').on('click', function() {
     window

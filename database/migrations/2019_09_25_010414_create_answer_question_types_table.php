@@ -17,8 +17,8 @@ class CreateAnswerQuestionTypesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('answer_id');
             $table->unsignedBigInteger('question_type_id');
-            $table->integer('factor');
-            $table->integer('score');
+            $table->integer('factor')->nullable();
+            $table->integer('score')->nullable();
             $table->timestamps();
 
             $table->foreign('answer_id')
