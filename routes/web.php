@@ -26,6 +26,11 @@ Route::prefix('panel')
         Route::resource('questions', 'QuestionController');
         Route::resource('assessmentUsers', 'AssessmentUserController');
         Route::resource('resultTexts', 'ResultTextController');
+
+        // Configs
+        Route::get('configs', 'ConfigController@index')->name('configs.index');
+        Route::get('configs/management', 'ConfigController@management')->name('configs.management');
+        Route::post('configs/management', 'ConfigController@update')->name('configs.update');
     });
 
 // REACT Route

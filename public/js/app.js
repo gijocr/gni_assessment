@@ -96855,9 +96855,6 @@ window.$(document).ready(function () {
     placeholder: 'Select',
     theme: 'bootstrap4'
   });
-  window.$('[data-dismiss="alert"]').on('click', function () {
-    window.$(this).parents('.alert').remove();
-  });
 });
 /**
  * Next, we will create a fresh React component instance and attach it to

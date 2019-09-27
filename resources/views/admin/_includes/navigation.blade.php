@@ -48,6 +48,12 @@
           Result Texts
         </a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link active" href="{{ route('admin.configs.index') }}">
+          General Settings
+        </a>
+      </li>
     </ul>
   </div>
 </nav>

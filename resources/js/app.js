@@ -15,13 +15,6 @@ window.$(document).ready(() => {
     placeholder: 'Select',
     theme: 'bootstrap4',
   });
-
-  window.$('[data-dismiss="alert"]').on('click', function() {
-    window
-      .$(this)
-      .parents('.alert')
-      .remove();
-  });
 });
 
 /**

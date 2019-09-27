@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Config;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ConfigController extends Controller
 {
@@ -14,39 +16,9 @@ class ConfigController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $configs = Config::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Config  $config
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Config $config)
-    {
-        //
+        return view('admin.configs.index', compact('configs'));
     }
 
     /**
@@ -55,9 +27,9 @@ class ConfigController extends Controller
      * @param  \App\Models\Config  $config
      * @return \Illuminate\Http\Response
      */
-    public function edit(Config $config)
+    public function management(Config $config)
     {
-        //
+        return view('admin.configs.edit');
     }
 
     /**
@@ -67,9 +39,29 @@ class ConfigController extends Controller
      * @param  \App\Models\Config  $config
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Config $config)
+    public function update(Request $request)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $config = Config::first();
+
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $key => $image) {
+                    $config->handleImage($key, $image);
+                }
+            }
+
+            $config->save();
+
+            DB::commit();
+
+            return successMessage();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return errorMessage();
+        }
     }
 
     /**

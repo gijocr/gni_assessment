@@ -24,13 +24,14 @@
 <body>
   @include('admin._includes.header')
 
-
   <div class="container-fluid">
     <div class="row">
       @include('admin._includes.navigation')
 
-      <main class="col-md-9 col-lg-10 ml-sm-auto p-4">
-        @yield('content')
+      <main class="col-md-9 col-lg-10 ml-sm-auto px-4">
+        <div class="mt-5 py-5">
+          @yield('content')
+        </div>
         <div class="row justify-content-center">
           <div class="col-md-10 col-lg-8">
             @yield('form_content')
