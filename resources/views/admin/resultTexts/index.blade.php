@@ -11,9 +11,10 @@
       <thead>
         <tr>
           <th>Type</th>
+          <th>Order</th>
           <th>Name</th>
           <th>Title</th>
-          <th>Order</th>
+          <th>Range</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -21,9 +22,9 @@
         @foreach ($resultTexts as $resultText)
         <tr>
           <td>{{ $resultText->pageType->name }}</td>
-          <td>{{ $resultText->name }}</td>
-          <td>{{ $resultText->title }}</td>
           <td>{{ $resultText->order }}</td>
+          <td>{{ $resultText->title }}</td>
+          <td>{{ $resultText->score_min . ' - ' . $resultText->score_max }}</td>
           <td>
             <a class="btn btn-link" href="{{ route('admin.resultTexts.edit', $resultText) }}">Edit</a>
 

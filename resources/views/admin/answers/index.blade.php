@@ -10,8 +10,12 @@
     <table class="table table-hover datatable bg-white ">
       <thead>
         <tr>
-          <th>Title</th>
-          <th>Order</th>
+          <th></th>
+
+          @foreach ($questionTypes as $questionType)
+          <th>{{ $questionType->title }}</th>
+          @endforeach
+
           <th>Actions</th>
         </tr>
       </thead>
@@ -19,7 +23,15 @@
         @foreach ($answers as $answer)
         <tr>
           <td>{{ $answer->title }}</td>
-          <td>{{ $answer->order }}</td>
+
+          <td>
+            @foreach ($answer->questionTypes as $answerQuestionType)
+            @foreach ($questionTypes as $questionType)
+            {{ $questionType->id === $answerQuestionType->id ? $answerQuestionType->pivot->score : '-' }}
+            @endforeach
+            @endforeach
+          </td>
+
           <td>
             <a class="btn btn-link" href="{{ route('admin.answers.edit', $answer) }}">Edit</a>
 

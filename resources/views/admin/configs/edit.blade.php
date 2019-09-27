@@ -40,6 +40,16 @@
           </div>
         </div>
       </div>
+
+      <div class="form-group col-md-6">
+        {{ Form::label('previous_button_text') }}
+        {{ Form::text('previous_button_text', $config->content['previous_button_text'], ['class' => 'form-control']) }}
+      </div>
+
+      <div class="form-group col-md-6">
+        {{ Form::label('next_button_text') }}
+        {{ Form::text('next_button_text', $config->content['next_button_text'], ['class' => 'form-control']) }}
+      </div>
     </div>
 
     <div class="form-group text-right mt-3">

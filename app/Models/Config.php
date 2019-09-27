@@ -17,7 +17,7 @@ class Config extends Model
      * @var array
      */
     protected $casts = [
-        'options' => 'json',
+        'content' => 'json',
     ];
 
     /**
@@ -37,7 +37,7 @@ class Config extends Model
      */
     public function hasIndex(string $index)
     {
-        return (array_key_exists($index, $this->content_decoded));
+        return (array_key_exists($index, $this->content));
     }
 
     /**
@@ -66,11 +66,9 @@ class Config extends Model
         $path = Storage::putFile('images', $image);
 
         if ($path) {
-            $this->content = json_encode(
-                array_merge(
-                    $this->content_decoded,
-                    [$index => $path]
-                )
+            $this->content = array_merge(
+                $this->content,
+                [$index => $path]
             );
         }
 
@@ -85,6 +83,6 @@ class Config extends Model
      */
     public function deleteImage(string $index)
     {
-        return Storage::delete($this->content_decoded[$index]);
+        return Storage::delete($this->content[$index]);
     }
 }

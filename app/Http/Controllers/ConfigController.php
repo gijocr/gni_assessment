@@ -27,9 +27,11 @@ class ConfigController extends Controller
      * @param  \App\Models\Config  $config
      * @return \Illuminate\Http\Response
      */
-    public function management(Config $config)
+    public function management()
     {
-        return view('admin.configs.edit');
+        $config = Config::first();
+
+        return view('admin.configs.edit', compact('config'));
     }
 
     /**
@@ -44,6 +46,7 @@ class ConfigController extends Controller
         DB::beginTransaction();
 
         try {
+            $content = $request->except('_token', 'images');
             $config = Config::first();
 
             if ($request->hasFile('images')) {
@@ -52,6 +55,7 @@ class ConfigController extends Controller
                 }
             }
 
+            $config->content = array_merge($config->content, $content);
             $config->save();
 
             DB::commit();

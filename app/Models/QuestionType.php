@@ -16,6 +16,8 @@ class QuestionType extends Model
      */
     public function answers()
     {
-        return $this->belongsToMany(Answer::class);
+        return $this->belongsToMany(Answer::class, 'answer_question_types')
+            ->withPivot(['score', 'factor'])
+            ->withTimestamps();
     }
 }

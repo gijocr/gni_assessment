@@ -17,7 +17,7 @@
       <div class="form-group col-md-12">
         {{ Form::label('question_types', 'Type') }}
         {{ Form::select(
-            'question_types[]',
+            'question_types[ids][]',
             $questionTypes, 
             null,
             [

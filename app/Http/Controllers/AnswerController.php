@@ -16,9 +16,15 @@ class AnswerController extends Controller
      */
     public function index()
     {
-        $answers = Answer::orderBy('order')->get();
+        $answers = Answer::with('questionTypes')
+            ->orderBy('order')
+            ->get();
 
-        return view('admin.answers.index', compact('answers'));
+        $questionTypes = QuestionType::whereHas('answers')
+            ->orderBy('order')
+            ->get();
+
+        return view('admin.answers.index', compact('answers', 'questionTypes'));
     }
 
     /**
@@ -46,7 +52,17 @@ class AnswerController extends Controller
         DB::beginTransaction();
 
         try {
-            Answer::create($request->all());
+            $answer = Answer::create($request->all());
+
+            foreach ($request->input('question_types.ids') as $questionId) {
+                $sync[$questionId] = [
+                    'score' => $request->input('question_types.score')[$questionId] ?? null,
+                    'factor' => $request->input('question_types.factor')[$questionId] ?? null,
+                ];
+            }
+
+            $answer->questionTypes()
+                ->sync($sync);
 
             DB::commit();
 
@@ -94,18 +110,16 @@ class AnswerController extends Controller
      */
     public function update(Request $request, Answer $answer)
     {
-        // dd($request->all());
-        $sync = [];
-
         DB::beginTransaction();
 
         try {
+            $sync = [];
             $answer->update($request->all());
 
             foreach ($request->input('question_types.ids') as $questionId) {
                 $sync[$questionId] = [
                     'score' => $request->input('question_types.score')[$questionId] ?? null,
-                    'factor' => $request->input('question_types.score')[$questionId] ?? null,
+                    'factor' => $request->input('question_types.factor')[$questionId] ?? null,
                 ];
             }
 
@@ -117,7 +131,7 @@ class AnswerController extends Controller
             return successMessage();
         } catch (\Throwable $th) {
             DB::rollBack();
-            dd($th);
+
             return errorMessage();
         }
     }
