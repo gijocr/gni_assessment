@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@ttskch/select2-bootstrap4-theme": "^1.2.3",
+    "codemirror": "^5.49.0",
     "datatables.net": "^1.10.19",
     "datatables.net-bs4": "^1.10.19",
     "datatables.net-colreorder-bs4": "^1.5.1",
@@ -44,6 +45,8 @@
     "react-router-dom": "^5.0.1",
     "redux": "^4.0.4",
     "select2": "^4.0.10",
-    "styled-components": "^4.4.0"
+    "styled-components": "^4.4.0",
+    "summernote": "^0.8.12",
+    "summernote-bootstrap4": "0.0.5"
   }
 }

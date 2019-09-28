@@ -98,7 +98,7 @@ const Body = props => {
                 <h1 className="title">{title}</h1>
 
                 <div className="description">
-                  <p>{description}</p>
+                  <p dangerouslySetInnerHTML={{ __html: description }} />
                 </div>
 
                 <button

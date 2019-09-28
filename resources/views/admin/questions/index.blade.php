@@ -22,7 +22,7 @@
         <tr>
           <td>{{ $question->pageType->name }}</td>
           <td>{{ $question->questionType->name }}</td>
-          <td>{{ $question->description }}</td>
+          <td>{!! $question->description !!}</td>
           <td>{{ $question->order }}</td>
           <td>
             <a class="btn btn-link" href="{{ route('admin.questions.edit', $question) }}">Edit</a>

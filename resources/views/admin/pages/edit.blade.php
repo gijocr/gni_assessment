@@ -12,9 +12,9 @@
 
   <div class="col-12">
     {{ Form::model(
-      $page, 
+      $page,
       [
-        'route' => ['admin.pages.update', $page], 
+        'route' => ['admin.pages.update', $page],
         'method' => 'put'
       ]
       ) }}
@@ -37,7 +37,7 @@
 
       <div class="form-group col-md-12">
         {{ Form::label('description', 'Description') }}
-        {{ Form::textarea('description', null, ['class' => 'form-control']) }}
+        {{ Form::textarea('description', null, ['class' => 'form-control summernote']) }}
       </div>
 
       <div class="form-group col-md-12">
