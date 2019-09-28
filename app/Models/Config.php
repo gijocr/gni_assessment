@@ -31,7 +31,7 @@ class Config extends Model
 
     /**
      * Check if content has index
-     * 
+     *
      * @param string @index
      * @return bool
      */
@@ -42,7 +42,7 @@ class Config extends Model
 
     /**
      * Handle storage and delete image file.
-     * 
+     *
      * @param string $key
      * @param \Illuminate\Http\UploadedFile $image
      */
@@ -57,7 +57,7 @@ class Config extends Model
 
     /**
      * Handle image upload
-     * 
+     *
      * @param string @index
      * @return string|bool
      */
@@ -77,7 +77,7 @@ class Config extends Model
 
     /**
      * Handle image delete
-     * 
+     *
      * @param string @index
      * @return bool
      */

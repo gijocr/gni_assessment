@@ -24,6 +24,14 @@ class PageType extends Model
     }
 
     /**
+     * Questions that belongs to the pageType.
+     */
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
+
+    /**
      * ResultTexts that the pageType has.
      */
     public function resultTexts()

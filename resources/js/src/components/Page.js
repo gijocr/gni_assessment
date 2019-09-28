@@ -8,15 +8,12 @@ import Footer from './Footer';
 // Styles
 import { Content } from '../styles/components/Page';
 
-export default function Page() {
-  const headerBackgroundColor = '#2769cb';
-  const bodyBackgroundColor = '#4185f4';
-  const footerBackgroundColor = '#286acc';
+export default function Page({ configs, page, page: { page_type } }) {
   return (
-    <Content backgroundColor={bodyBackgroundColor}>
-      <Header backgroundColor={headerBackgroundColor} />
-      <Body backgroundColor={bodyBackgroundColor} />
-      <Footer backgroundColor={footerBackgroundColor} />
+    <Content backgroundColor={page_type.body_color}>
+      <Header configs={configs} pageType={page_type} />
+      <Body page={page} pageType={page_type} configs={configs} />
+      <Footer page={page} pageType={page_type} />
     </Content>
   );
 }

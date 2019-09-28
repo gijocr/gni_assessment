@@ -63,6 +63,7 @@ class ConfigController extends Controller
             return successMessage();
         } catch (\Throwable $th) {
             DB::rollBack();
+            dd($th);
 
             return errorMessage();
         }

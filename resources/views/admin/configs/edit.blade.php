@@ -13,7 +13,7 @@
   <div class="col-12">
     {{ Form::open(
       [
-        'route' => 'admin.configs.update', 
+        'route' => 'admin.configs.update',
         'method' => 'post',
         'files' => true
       ]
@@ -43,12 +43,12 @@
 
       <div class="form-group col-md-6">
         {{ Form::label('previous_button_text') }}
-        {{ Form::text('previous_button_text', $config->content['previous_button_text'], ['class' => 'form-control']) }}
+        {{ Form::text('previous_button_text', $config->content['previous_button_text'] ?? null, ['class' => 'form-control']) }}
       </div>
 
       <div class="form-group col-md-6">
         {{ Form::label('next_button_text') }}
-        {{ Form::text('next_button_text', $config->content['next_button_text'], ['class' => 'form-control']) }}
+        {{ Form::text('next_button_text', $config->content['next_button_text'] ?? null, ['class' => 'form-control']) }}
       </div>
     </div>
 

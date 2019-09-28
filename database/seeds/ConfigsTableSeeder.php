@@ -12,6 +12,6 @@ class ConfigsTableSeeder extends Seeder
      */
     public function run()
     {
-        Config::create(['content' => json_encode([])]);
+        Config::create(['content' => []]);
     }
 }

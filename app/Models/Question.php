@@ -32,7 +32,7 @@ class Question extends Model
      */
     public function answers()
     {
-        return $this->belongsToMany(Answer::class)
+        return $this->belongsToMany(Answer::class, 'answer_questions')
             ->withPivot(['session_id'])
             ->withTimestamps();
     }
