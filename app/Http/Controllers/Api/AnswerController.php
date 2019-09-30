@@ -14,7 +14,7 @@ class AnswerController extends Controller
     {
         if (
             !$request->has('question_id')
-            && !$request->has('answer_id')
+            && !$request->has('asnwer_id')
             && !$request->has('session_id')
         ) {
             return response()
@@ -28,7 +28,7 @@ class AnswerController extends Controller
             $question = Question::findOrFail($request->get('question_id'));
             $question->answers()
                 ->sync([
-                    $request->get('answer_id') => $request->only('session_id')
+                    $request->get('asnwer_id') => $request->only('session_id')
                 ]);
 
             return response()

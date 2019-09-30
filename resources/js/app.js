@@ -10,6 +10,7 @@ require('select2/dist/css/select2.min.css');
 require('@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css');
 require('summernote/dist/summernote-bs4');
 require('summernote/dist/summernote-bs4.css');
+Swal = require('sweetalert2/dist/sweetalert2');
 
 window.$(document).ready(() => {
   window.$('.summernote').summernote({
@@ -20,6 +21,34 @@ window.$(document).ready(() => {
     placeholder: 'Select',
     theme: 'bootstrap4',
   });
+});
+
+// DELETE Request
+window.$('table').on('click', '.delete', function(e) {
+  e.preventDefault();
+  const form = $(this);
+
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, cancel!',
+    reverseButtons: true
+  }).then((result) => {
+    window.$.ajax({
+      url: form.attr('action'),
+      type: 'POST',
+      data: form.serialize(),
+      success: function(data) {
+        const tr = form.parents('tr');
+        tr.slideUp(function() {
+          tr.remove();
+        })
+      }
+    })
+  })
 });
 
 /**

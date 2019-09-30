@@ -16,9 +16,9 @@ class ConfigController extends Controller
      */
     public function index()
     {
-        $configs = Config::all();
+        $config = Config::firstOrFail();
 
-        return view('admin.configs.index', compact('configs'));
+        return view('admin.configs.index', compact('config'));
     }
 
     /**

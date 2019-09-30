@@ -28,7 +28,8 @@ export const Asnwer = styled.div`
     margin-bottom: 5px;
     font-weight: 500;
 
-    &:hover {
+    &:hover,
+    &.active {
       background-color: rgba(255, 255, 255, 0.5);
     }
 
@@ -50,4 +51,8 @@ export const Asnwer = styled.div`
   input {
     display: none;
   }
+`;
+
+export const Button = styled.button`
+  background-color: ${props => (props.activeRadio ? '#fff !important' : '')};
 `;

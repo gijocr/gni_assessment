@@ -16,9 +16,10 @@ use Illuminate\Http\Request;
 Route::middleware('api')
     ->namespace('Api')
     ->group(function () {
-        Route::get('page/{order}', 'PageController@getPage');
-        Route::get('page/{order}/type', 'PageController@getPageByType');
+        Route::get('page/{order}/type/{typeOrder}', 'PageController@getPageByType');
         Route::get('pages', 'PageController@getPages');
+        Route::get('question/{order}/type/{typeOrder}', 'QuestionController@getQuestionByPageType');
         Route::put('answers', 'AnswerController@update');
         Route::get('configs', 'ConfigController@getConfigs');
+        Route::get('result/{typeOrder}', 'ResultController@getResultByPageType');
     });

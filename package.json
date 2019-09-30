@@ -47,6 +47,7 @@
     "select2": "^4.0.10",
     "styled-components": "^4.4.0",
     "summernote": "^0.8.12",
-    "summernote-bootstrap4": "0.0.5"
+    "summernote-bootstrap4": "0.0.5",
+    "sweetalert2": "^8.17.6"
   }
 }

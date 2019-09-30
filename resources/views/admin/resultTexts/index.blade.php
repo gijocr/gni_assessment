@@ -12,7 +12,6 @@
         <tr>
           <th>Type</th>
           <th>Order</th>
-          <th>Name</th>
           <th>Title</th>
           <th>Range</th>
           <th>Actions</th>
@@ -28,7 +27,7 @@
           <td>
             <a class="btn btn-link" href="{{ route('admin.resultTexts.edit', $resultText) }}">Edit</a>
 
-            {{ Form::model($resultText,['route' => ['admin.resultTexts.destroy', $resultText], 'method' => 'delete', 'class' => 'd-inline']) }}
+            {{ Form::model($resultText,['route' => ['admin.resultTexts.destroy', $resultText], 'method' => 'delete', 'class' => 'd-inline delete']) }}
             <button type="submit" class="btn btn-link text-danger">Delete</button>
             {{ Form::close() }}
           </td>

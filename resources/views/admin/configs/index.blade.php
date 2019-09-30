@@ -19,10 +19,10 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($configs as $config)
+        @foreach ($config->content as $key => $content)
         <tr>
-          <td>{{ $config->content }}</td>
-          <td>{{ $config->content }}</td>
+          <td>{{ $key }}</td>
+          <td>{{ $content }}</td>
         </tr>
         @endforeach
       </tbody>

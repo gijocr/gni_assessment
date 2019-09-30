@@ -3,114 +3,111 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // Api
-import { getPageType } from '../services/api';
+import { getPageType, getQuestionByPageType } from '../services/api';
 
 // Actions
-import * as PageActions from '../store/actions/pages';
+import * as PageActions from '../store/actions/page';
+import * as QuestionActions from '../store/actions/question';
+import * as AsnwerActions from '../store/actions/asnwer';
 
 // Components
 import Question from './Question';
+import Graphic from './Graphic';
 
 // Styles
 import { Container } from '../styles/components/Body';
 
 const Body = props => {
   const {
-    configs,
-    page: { title, description, button_label },
-    pageType,
-    pageType: { body_color, questions },
+    page,
+    page: { page_type: pageType },
+    question,
+    hasFooter,
     setPage,
-    pages: { pages, activePage, hasNext, activeQuestion },
+    setQuestion,
   } = props;
+  console.log(props);
+
+  const classList = {
+    flexAlign: hasFooter ? 'center' : 'flex-start',
+  };
 
   const getNextPageType = async () => {
     const nextType = pageType.order + 1;
-    const result = await getPageType(nextType);
+    const result = await getPageType(0, nextType);
 
-    setPage(result.data.pages, 0, hasNext, activeQuestion);
+    const { page: newPage, ...rest } = result.data;
+    setPage(newPage, rest);
   };
 
-  const getNextPage = () => {
-    const nextPage = activePage + 1;
+  const getNextPage = async () => {
+    if (page.hasNext) {
+      const nextPage = page.order + 1;
+      const result = await getPageType(nextPage, pageType.order);
 
-    if (pages.length > nextPage) {
-      setPage(pages, nextPage, hasNext, activeQuestion);
-    } else if (hasNext) {
+      const { page: newPage, ...rest } = result.data;
+      setPage(newPage, rest);
+    } else {
       getNextPageType();
     }
   };
 
-  const getNextQuestion = () => {
-    if (activeQuestion === null) {
-      setPage(pages, activePage, hasNext, 0);
-    } else {
-      const nextQuestion = activeQuestion + 1;
+  const getNextQuestion = async () => {
+    let result = null;
 
-      if (questions.length > nextQuestion) {
-        setPage(pages, activePage, hasNext, nextQuestion);
-      }
+    if (page.hasQuestion && !question.id) {
+      result = await getQuestionByPageType(0, pageType.order);
+    } else if (question.id) {
+      const nextQuestion = question.order + 1;
+      result = await getQuestionByPageType(nextQuestion, pageType.order);
+    }
+
+    if (result) {
+      const { question: newQuestion, hasNext } = result.data;
+      setQuestion(newQuestion, hasNext);
     }
   };
 
-  const getPreviousQuestion = () => {
-    if (activeQuestion === 0) {
-      setPage(pages, activePage, hasNext, null);
-    } else {
-      const previousQuestion = activeQuestion - 1;
+  const renderQuestion = () => {
+    return <Question getNextPage={getNextPage} />;
+  };
 
-      setPage(pages, activePage, hasNext, previousQuestion);
+  const renderResult = () => {
+    return <Graphic className="mb-2" percent="80" />;
+  };
+
+  const render = () => {
+    if (question.id && page.hasQuestion) {
+      return renderQuestion();
     }
+
+    // if (page.hasResultText) {
+    //   return renderResult();
+    // }
+
+    return (
+      <>
+        <h1 className="title">{page.title}</h1>
+        <div className="description">
+          <p dangerouslySetInnerHTML={{ __html: page.description }} />
+        </div>
+        <button
+          type="button"
+          className="btn btn-default"
+          onClick={page.hasQuestion ? getNextQuestion : getNextPage}
+          // onClick={getNextPage}
+        >
+          <strong>{page.button_label}</strong>
+        </button>
+      </>
+    );
   };
 
   return (
-    <Container backgroundColor={body_color}>
+    <Container backgroundColor={pageType.body_color} classList={classList}>
       <div className="container">
         <div className="row">
-          <div className="col-md-9">
-            {activeQuestion !== null ? (
-              <>
-                <Question
-                  title={questions[activeQuestion].question_type.title}
-                  description={questions[activeQuestion].description}
-                  asnwers={questions[activeQuestion].question_type.answers}
-                  id={questions[activeQuestion].id}
-                />
-
-                <button
-                  type="button"
-                  className="btn btn-outline-white mr-2"
-                  onClick={getPreviousQuestion}
-                >
-                  <strong>{configs.previous_button_text}</strong>
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-white"
-                  color={body_color}
-                  onClick={getNextQuestion}
-                >
-                  <strong>{configs.next_button_text}</strong>
-                </button>
-              </>
-            ) : (
-              <>
-                <h1 className="title">{title}</h1>
-
-                <div className="description">
-                  <p dangerouslySetInnerHTML={{ __html: description }} />
-                </div>
-
-                <button
-                  type="button"
-                  className="btn btn-default"
-                  onClick={questions.length ? getNextQuestion : getNextPage}
-                >
-                  <strong>{button_label}</strong>
-                </button>
-              </>
-            )}
-          </div>
+          <div className="col-md-9">{render()}</div>
         </div>
       </div>
     </Container>
@@ -118,11 +115,14 @@ const Body = props => {
 };
 
 const mapStateToProps = state => ({
-  pages: state.pages,
+  page: state.page,
+  config: state.config,
+  question: state.question,
+  // asnwer: state.asnwer,
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(PageActions, dispatch);
+  bindActionCreators({ ...PageActions, ...QuestionActions }, dispatch);
 
 export default connect(
   mapStateToProps,

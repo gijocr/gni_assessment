@@ -1,7 +1,13 @@
 import { combineReducers } from 'redux';
 
-import pages from './pages';
+import asnwer from './asnwer';
+import config from './config';
+import page from './page';
+import question from './question';
 
 export default combineReducers({
-  pages,
+  asnwer,
+  config,
+  page,
+  question,
 });

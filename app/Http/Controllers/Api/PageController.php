@@ -8,39 +8,55 @@ use App\Models\Page;
 
 class PageController extends Controller
 {
-    public function getPages()
+    public function getPageByType(int $pageOrder, int $typeOrder)
     {
-        $pages = Page::with('pageType')
-            ->orderBy('order')
-            ->get();
+        $nextPageOrder = $pageOrder + 1;
 
-        return response()->json($pages);
-    }
-
-    public function getPageByType(int $order)
-    {
-        $nextOrder = $order + 1;
-
-        $pages = Page::whereHas('pageType', function ($q) use ($order) {
-            $q->where('order', $order);
+        $page = Page::whereHas('pageType', function ($q) use ($typeOrder) {
+            $q->when($typeOrder === 0, function ($q) {
+                $q->orderBy('order');
+            })
+                ->when($typeOrder > 0, function ($q) use ($typeOrder) {
+                    $q->where('order', $typeOrder);
+                });
         })
-            ->with(['pageType.questions.questionType.answers' => function ($q) {
+            ->with(['pageType' => function ($q) {
                 $q->orderBy('order');
             }])
+            ->when($pageOrder === 0, function ($q) {
+                $q->orderBy('order');
+            })
+            ->when($pageOrder > 0, function ($q) use ($pageOrder) {
+                $q->where('order', $pageOrder);
+            })
             ->orderBy('order')
-            ->get();
+            ->firstOrFail();
 
-        $hasNext = (bool) Page::whereHas(
-            'pageType',
-            function ($q) use ($nextOrder) {
-                $q->where('order', $nextOrder);
-            }
-        )
+        $hasNextPage = Page::whereHas('pageType', function ($q) use ($typeOrder) {
+            $q->where('order', $typeOrder);
+        })
+            ->where('order', $nextPageOrder)
+            ->count();
+
+        $hasQuestions = Page::whereHas('pageType', function ($q) use ($typeOrder) {
+            $q->has('questions')
+                ->where('order', $typeOrder);
+        })
+            ->where('order', $pageOrder)
+            ->count();
+
+        $hasResultText = Page::whereHas('pageType', function ($q) use ($typeOrder) {
+            $q->has('resultTexts')
+                ->where('order', $typeOrder);
+        })
+            ->where('order', $pageOrder)
             ->count();
 
         $result = collect([
-            'has_next' => $hasNext,
-            'pages' => $pages,
+            'hasNext' => (bool) $hasNextPage,
+            'hasQuestion' => (bool) $hasQuestions,
+            'hasResultText' => (bool) $hasResultText,
+            'page' => $page,
         ]);
 
         return response()

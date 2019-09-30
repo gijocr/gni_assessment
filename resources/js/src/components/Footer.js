@@ -1,18 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { Container } from '../styles/components/Footer';
 
-export default function Footer({
-  page: { footer_label },
-  pageType: { footer_color },
-}) {
+function Footer(props) {
+  const {
+    page,
+    page: { page_type: pageType },
+  } = props;
   return (
-    <Container backgroundColor={footer_color}>
+    <Container backgroundColor={pageType.footer_color}>
       <div className="container">
         <div className="footer py-1">
           <div className="row">
             <div className="col">
-              <small>{footer_label}</small>
+              <small>{page.footer_label}</small>
             </div>
           </div>
         </div>
@@ -20,3 +22,10 @@ export default function Footer({
     </Container>
   );
 }
+
+const mapStateToProps = state => ({
+  page: state.page,
+  config: state.config,
+});
+
+export default connect(mapStateToProps)(Footer);

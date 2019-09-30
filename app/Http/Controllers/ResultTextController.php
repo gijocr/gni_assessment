@@ -133,11 +133,13 @@ class ResultTextController extends Controller
 
             DB::commit();
 
-            return successMessage();
+            return response()
+                ->json(['success' => true]);
         } catch (\Throwable $th) {
             DB::rollBack();
 
-            return errorMessage();
+            return response()
+                ->json(['error' => $th->getMessage()]);
         }
     }
 }
